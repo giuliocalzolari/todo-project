@@ -1,0 +1,358 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    color: #474a56;
+    font-family: 'Alice', serif;
+}
+  
+
+
+/* -------------------header--------------------- */
+header {
+    background: #e6e7e5;
+    flex-shrink: 0;
+}
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+header nav h2 {
+    font-family: 'Yellowtail', cursive;
+}
+
+
+.settings {
+    display: flex;
+    align-self: center;
+}
+
+.settings ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.settings ul li {
+    padding: 0 15px;
+}
+
+
+h1 {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 50px;
+    background: #f5efe3;
+}
+
+
+
+
+
+
+
+/* ------------------------------main--------------------------- */
+main {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    background: #f5efe3;
+    padding: 30px 0;
+}
+
+
+
+.todos-container {
+    width: 60%;
+    padding-left: 80px;
+}
+
+
+.warning-empty {
+    margin-top: 15px;
+    font-size: 16px;
+    color: red;
+}
+
+
+#todo-adding {
+    font-size: 16px;
+    border: 2px solid #f7d3ba;
+    padding: 5px;
+    width: 600px;
+    margin: 0px 5px 10px 0;
+}
+
+
+#todo-adding::placeholder {
+    color: grey;
+}
+
+.adding-button {
+    font-size: 16px;
+    margin: 10px 0;
+    border: 1px solid #f7d3ba;
+    background: #f7d3ba;
+    border-radius: 10px;
+    padding: 5px 10px;
+    transition: background 2s ease;
+  }
+  
+.adding-button:hover {
+    background: lightseagreen;
+    cursor: pointer;
+}
+
+
+.show-priority-button, .show-oldest-button {
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #f7d3ba;
+    border-radius: 10px;
+    background: #f7d3ba;
+    transition: background 2s ease;
+}
+
+
+.show-priority-button:hover, .show-oldest-button:hover {
+    cursor: pointer;
+    background:lightseagreen;
+}
+
+
+
+.todo-lists {
+    display: flex;
+    padding-top: 20px;
+}
+
+
+.todo-item {
+    padding-bottom: 15px;
+    list-style-type: none;
+}
+
+
+.todo-item-container {
+    display: flex;
+}
+
+
+.todo-text-container {
+    padding: 0 15px;
+}
+
+
+.todo-text {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+.todo-text p {
+    font-size: 22px;
+}
+
+.todo-attribute {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.todo-attribute p {
+    padding-left: 20px;
+    font-size: 16px;
+}
+
+.piority {
+    color: red;
+    font-weight: bold;
+    display: none;
+}
+
+.heart-icon {
+    padding-right: 10px;
+    display: flex;
+    align-self: center;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.pencil, .calendar, .exclamation, .trash {
+    display: none;
+    cursor: pointer;
+}
+
+
+.arrow, .pencil, .calendar, .exclamation, .trash {
+    border: none;
+    background: none;
+    padding: 10px;
+    transition: color 2s ease;
+}
+
+
+
+.arrow-icon, .pencil-icon, .calendar-icon, .exclamation-icon, .trash-icon {
+    font-size: 20px;
+    align-self: center;
+    color: #f7d3ba;
+}
+
+.arrow-icon:hover, .pencil-icon:hover, .calendar-icon:hover, .exclamation-icon:hover, .trash-icon:hover {
+    cursor: pointer;
+    color: lightseagreen;
+}
+
+.arrow-icon {
+    display: flex;
+}
+
+
+
+
+.todo-modify {
+    list-style-type: none;
+}
+
+.todo-modify li {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0 5px;
+    font-size: 16px;
+    transition: backgorund 2s ease;
+}
+
+
+.todo-modify li:hover {
+    background: lightseagreen;
+    cursor: pointer;
+}
+
+
+
+
+
+
+/* --------------------sidebar - calendar------------------ */
+#calendar {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.switch-display {
+    display: flex;
+    padding-bottom: 20px;
+}
+
+
+.switch-display-button {
+    font-size: 16px;
+    margin: 0 10px;
+    border: 1px solid #f7d3ba;
+    background: #f7d3ba;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.switch-display-button:hover {
+    background: lightseagreen;
+    cursor: pointer;
+}
+
+
+
+
+.calendar-days {
+    padding: 10px 90px;
+    background: #e6e7e5;
+    border-radius: 10px;
+}
+
+
+
+.calendar-days ul {
+    /* display: flex; */
+    /* flex-direction: column; */
+    list-style-type: none;
+    /* width: 30%; */
+    overflow: inherit;
+    
+}
+
+.calendar-days ul li {
+    background: #f7d3ba;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 5px 0;
+    /* min-width: 120px; */
+    text-align: center;
+}
+
+.calendar-days ul li:hover {
+    background: lightseagreen;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+/* -----------------------------footer-------------------------- */
+footer {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    background: #e6e7e5;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  footer p {
+    font-size: 0.875em;
+  }
+
+  .footer-trademark p {
+    font-family: 'Yellowtail', cursive;
+  }
+  
+  
+  .website-credit p {
+    color: #474a56;
+    font-size: 0.75em;
+  }
+  
+  .website-credit a {
+    text-decoration: none;
+    color: #474a56;
+    font-style: italic;
+    font-size: 0.75em;
+    transition: font-size 1s ease;
+  }
+  
+  .website-credit a:hover {
+    font-size: 1em;
+  }
