@@ -166,6 +166,41 @@ main {
     font-size: 22px;
 }
 
+.change-todo-text-p-style {
+    background: white;
+    border: 1px solid #f7d3ba;
+    padding: 3px;
+}
+
+
+.save-cancel-container {
+    display: flex;
+    margin-top: 5px;
+}
+
+
+.save-button, .cancel-button {
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #f7d3ba;
+    border-radius: 10px;
+    background: #f7d3ba;
+    transition: background 2s ease;
+}
+
+.save-button:hover, .cancel-button:hover {
+    cursor: pointer;
+    background:lightseagreen;
+}
+
+.save-button {
+    margin-left: 20px;
+    margin-right: 5px;
+}
+
+
+
+
 .todo-attribute {
     display: flex;
     justify-content: flex-start;
@@ -179,7 +214,7 @@ main {
 .piority {
     color: red;
     font-weight: bold;
-    display: none;
+    display: block;
 }
 
 .heart-icon {
@@ -195,7 +230,7 @@ main {
 }
 
 .pencil, .calendar, .exclamation, .trash {
-    display: none;
+    display: block;
     cursor: pointer;
 }
 
@@ -224,6 +259,10 @@ main {
     display: flex;
 }
 
+
+.is-hidden {
+    display: none;
+}
 
 
 

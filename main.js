@@ -45,6 +45,33 @@ function createTodoTextP () {
 }
 
 
+function createSaveCancelContainer () {
+    let saveCancelContainer = document.createElement("div");
+    saveCancelContainer.setAttribute("class", "save-cancel-container");
+    return saveCancelContainer;
+}
+
+
+function createSaveButton () {
+    let saveButton = document.createElement("button");
+    saveButton.textContent = "save";
+    saveButton.setAttribute("class", "save-button");
+    saveButton.classList.add("is-hidden");
+    saveButton.addEventListener("click", saveTextChanges);
+    return saveButton;
+}
+
+function createCancelButton () {
+    let cancelButton = document.createElement("button");
+    cancelButton.textContent = "cancel";
+    cancelButton.setAttribute("class", "cancel-button");
+    cancelButton.classList.add("is-hidden");
+    cancelButton.addEventListener("click", cancelTextChanges);
+    return cancelButton;
+}
+
+
+
 function createTodoAttribute () {
     let todoAttribute = document.createElement("div");
     todoAttribute.setAttribute("class", "todo-attribute");
@@ -63,6 +90,7 @@ function createPriority (givingPriority) {
     let priority = document.createElement("p");
     priority.textContent = givingPriority;
     priority.setAttribute("class", "piority");
+    priority.classList.add("is-hidden");
     return priority;
 }
 
@@ -83,7 +111,8 @@ function createArrowButton () {
 function createPencilButton () {
     let pencilButton = document.createElement("button");
     pencilButton.setAttribute("class", "pencil");
-    pencilButton.setAttribute("style", "display: none");
+    pencilButton.classList.add("is-hidden");
+    //pencilButton.setAttribute("style", "display: none");
     pencilButton.addEventListener("click", editTodoTextP);
     return pencilButton;
 }
@@ -91,14 +120,16 @@ function createPencilButton () {
 function createCalendarButton () {
     let calendarButton = document.createElement("button");
     calendarButton.setAttribute("class", "calendar");
-    calendarButton.setAttribute("style", "display: none");
+    calendarButton.classList.add("is-hidden");
+    //calendarButton.setAttribute("style", "display: none");
     return calendarButton;
 }
 
 function createExclamationButton () {
     let exclamationButton = document.createElement("button");
     exclamationButton.setAttribute("class", "exclamation");
-    exclamationButton.setAttribute("style", "display: none");
+    exclamationButton.classList.add("is-hidden");
+    //exclamationButton.setAttribute("style", "display: none");
     exclamationButton.addEventListener("click", givePriority);
     return exclamationButton;
 }
@@ -106,7 +137,8 @@ function createExclamationButton () {
 function createTrashButton () {
     let trashButton = document.createElement("button");
     trashButton.setAttribute("class", "trash");
-    trashButton.setAttribute("style", "display: none");
+    trashButton.classList.add("is-hidden");
+    //trashButton.setAttribute("style", "display: none");
     trashButton.addEventListener("click", deleteTodo);
     return trashButton;
 }
@@ -164,6 +196,7 @@ function addTodo () {
         let todoTextContainer = createTodoTextContainer();
         let iconContainer = createIconContainer();
         let todoText = createTodoText();
+        let saveCancelContainer = createSaveCancelContainer();
         let todoAttribute = createTodoAttribute();
 
         let arrowButton = createArrowButton();
@@ -178,9 +211,12 @@ function addTodo () {
         todoItemContainer.appendChild(todoTextContainer);
         todoItemContainer.appendChild(iconContainer);
         todoTextContainer.appendChild(todoText);
+        todoTextContainer.appendChild(saveCancelContainer);
         todoTextContainer.appendChild(todoAttribute);
         todoText.appendChild(createHeartIcon());
         todoText.appendChild(todoTextP);
+        saveCancelContainer.appendChild(createSaveButton());
+        saveCancelContainer.appendChild(createCancelButton());
         todoAttribute.appendChild(createDate("2018.11.04"));
         todoAttribute.appendChild(createPriority("priority"));
         iconContainer.appendChild(arrowButton);
@@ -199,19 +235,31 @@ function addTodo () {
 
 //showing additional 4 icons(buttons) when the arrow icon is clicked
 function addFourIcons () {
+    console.log(event.currentTarget);
     let arrowButton = event.currentTarget;
 
-    if (arrowButton.parentNode.children[1].style.display === "none" &&
-        arrowButton.parentNode.children[2].style.display === "none" &&
-        arrowButton.parentNode.children[3].style.display === "none" &&
-        arrowButton.parentNode.children[4].style.display === "none") {
+    if (arrowButton.parentNode.children[1].classList.contains("is-hidden") === true &&
+        arrowButton.parentNode.children[2].classList.contains("is-hidden") === true &&
+        arrowButton.parentNode.children[3].classList.contains("is-hidden") === true &&
+        arrowButton.parentNode.children[4].classList.contains("is-hidden") === true) {
 
-            arrowButton.parentNode.children[1].style.display = "flex";
-            arrowButton.parentNode.children[2].style.display = "flex";
-            arrowButton.parentNode.children[3].style.display = "flex";
-            arrowButton.parentNode.children[4].style.display = "flex";
+            arrowButton.parentNode.children[1].classList.remove("is-hidden");
+            arrowButton.parentNode.children[2].classList.remove("is-hidden");
+            arrowButton.parentNode.children[3].classList.remove("is-hidden");
+            arrowButton.parentNode.children[4].classList.remove("is-hidden");
     }
 
+    else if (arrowButton.parentNode.children[1].classList.contains("is-hidden") === false &&
+            arrowButton.parentNode.children[2].classList.contains("is-hidden") === false &&
+            arrowButton.parentNode.children[3].classList.contains("is-hidden") === false &&
+            arrowButton.parentNode.children[4].classList.contains("is-hidden") === false) {
+
+                arrowButton.parentNode.children[1].classList.add("is-hidden");
+                arrowButton.parentNode.children[2].classList.add("is-hidden");
+                arrowButton.parentNode.children[3].classList.add("is-hidden");
+                arrowButton.parentNode.children[4].classList.add("is-hidden");
+            }
+    
 }
 
 
@@ -219,13 +267,13 @@ function addFourIcons () {
 function givePriority () {
     let exclamationButton = event.currentTarget;
 
-    if (exclamationButton.parentNode.previousSibling.children[1].children[1].style.display === "block") {
+    if (exclamationButton.parentNode.previousSibling.children[2].children[1].classList.contains("is-hidden") === true) {
         
-        exclamationButton.parentNode.previousSibling.children[1].children[1].style.display = "none";
+        exclamationButton.parentNode.previousSibling.children[2].children[1].classList.remove("is-hidden");
         hideFourIcons(exclamationButton);
     } 
-    else {
-        exclamationButton.parentNode.previousSibling.children[1].children[1].style.display = "block";
+    else if (exclamationButton.parentNode.previousSibling.children[2].children[1].classList.contains("is-hidden") === false){
+        exclamationButton.parentNode.previousSibling.children[2].children[1].classList.add("is-hidden");
         hideFourIcons(exclamationButton);
     }
 }
@@ -238,26 +286,57 @@ function deleteTodo () {
 
 //when one of the four icons is clicked, they disappear after clicking
 function hideFourIcons (actualEvent) {
-    actualEvent.parentNode.children[1].style.display = "none";
-    actualEvent.parentNode.children[2].style.display = "none";
-    actualEvent.parentNode.children[3].style.display = "none";
-    actualEvent.parentNode.children[4].style.display = "none";
+    actualEvent.parentNode.children[1].classList.add("is-hidden");
+    actualEvent.parentNode.children[2].classList.add("is-hidden");
+    actualEvent.parentNode.children[3].classList.add("is-hidden");
+    actualEvent.parentNode.children[4].classList.add("is-hidden");
 }
 
 
+let text;
 
 function editTodoTextP () {
     let pencilButton = event.currentTarget;
+    
+    //saving the original text of todo element to a global variable
+    text = pencilButton.parentNode.previousSibling.children[0].children[1].textContent;
+    
     setContenteditableToTodoTextP(pencilButton);
+    changeStyleToTodoTextP(pencilButton);
+
+    //show save&cancel buttons
+    pencilButton.parentNode.previousSibling.children[1].children[0].classList.remove("is-hidden");
+    pencilButton.parentNode.previousSibling.children[1].children[1].classList.remove("is-hidden");
+
+    hideFourIcons(pencilButton);
 }
 
 
 function setContenteditableToTodoTextP (actualEvent) {
     actualEvent.parentNode.previousSibling.children[0].children[1].setAttribute("contenteditable", "true");
-   
-    //changing background of todoTextP when we want to edit the text
-    actualEvent.parentNode.previousSibling.children[0].children[1].style.backgroundColor = "white";
-    actualEvent.parentNode.previousSibling.children[0].children[1].style.border = "2px solid #f7d3ba";
-    actualEvent.parentNode.previousSibling.children[0].children[1].style.padding = "5px";
+}
+
+function changeStyleToTodoTextP (actualEvent) {
+    actualEvent.parentNode.previousSibling.children[0].children[1].classList.add("change-todo-text-p-style");
+}
+
+
+function saveTextChanges () {
+    let saveButton = event.currentTarget;
+    saveButton.parentNode.previousSibling.children[1].classList.remove("change-todo-text-p-style");
+    saveButton.parentNode.previousSibling.children[1].setAttribute("contenteditable", "false");
+    saveButton.classList.add("is-hidden");
+    saveButton.nextSibling.classList.add("is-hidden");
+}
+
+function cancelTextChanges () {
+    let cancelButton = event.currentTarget;
+    cancelButton.parentNode.previousSibling.children[1].classList.remove("change-todo-text-p-style");
+    cancelButton.parentNode.previousSibling.children[1].setAttribute("contenteditable", "false");
+    cancelButton.classList.add("is-hidden");
+    cancelButton.previousSibling.classList.add("is-hidden");
+
+    //using the global variable 'text' to get back the original text after the user modifies it but in the and pushes cancel
+    cancelButton.parentNode.previousSibling.children[1].textContent = text;
     
 }
