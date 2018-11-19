@@ -95,6 +95,43 @@ function createPriority (givingPriority) {
 }
 
 
+function createDeleteContainer () {
+    let deleteContainer = document.createElement("div");
+    deleteContainer.setAttribute("class", "delete-container");
+    deleteContainer.classList.add("is-hidden");
+    return deleteContainer;
+}
+
+function createDeleteQuestion () {
+    let deleteQuestion = document.createElement("p");
+    deleteQuestion.textContent = "Are you sure you want to delete?";
+    deleteQuestion.setAttribute("class", "delete-question");
+    return deleteQuestion;
+}
+
+function createDeleteAnswerButtonsContainer () {
+    let deleteAnswerButtonsContainer = document.createElement("div");
+    deleteAnswerButtonsContainer.setAttribute("class", "delete-answer-buttons-container");
+    return deleteAnswerButtonsContainer;
+}
+
+function createDeleteYesButton () {
+    let deleteYesButton = document.createElement("button");
+    deleteYesButton.textContent = "yes";
+    deleteYesButton.setAttribute("class", "delete-yes");
+    deleteYesButton.addEventListener("click", deleteYes);
+    return deleteYesButton;
+}
+
+function createDeleteNoButton () {
+    let deleteNoButton = document.createElement("button");
+    deleteNoButton.textContent = "no";
+    deleteNoButton.setAttribute("class", "delete-no");
+    deleteNoButton.addEventListener("click", deleteNo);
+    return deleteNoButton;
+}
+
+
 function createIconContainer () {
     let iconContainer = document.createElement("div");
     iconContainer.setAttribute("class", "icon-container");
@@ -112,7 +149,6 @@ function createPencilButton () {
     let pencilButton = document.createElement("button");
     pencilButton.setAttribute("class", "pencil");
     pencilButton.classList.add("is-hidden");
-    //pencilButton.setAttribute("style", "display: none");
     pencilButton.addEventListener("click", editTodoTextP);
     return pencilButton;
 }
@@ -121,7 +157,6 @@ function createCalendarButton () {
     let calendarButton = document.createElement("button");
     calendarButton.setAttribute("class", "calendar");
     calendarButton.classList.add("is-hidden");
-    //calendarButton.setAttribute("style", "display: none");
     return calendarButton;
 }
 
@@ -129,7 +164,6 @@ function createExclamationButton () {
     let exclamationButton = document.createElement("button");
     exclamationButton.setAttribute("class", "exclamation");
     exclamationButton.classList.add("is-hidden");
-    //exclamationButton.setAttribute("style", "display: none");
     exclamationButton.addEventListener("click", givePriority);
     return exclamationButton;
 }
@@ -138,7 +172,6 @@ function createTrashButton () {
     let trashButton = document.createElement("button");
     trashButton.setAttribute("class", "trash");
     trashButton.classList.add("is-hidden");
-    //trashButton.setAttribute("style", "display: none");
     trashButton.addEventListener("click", deleteTodo);
     return trashButton;
 }
@@ -198,6 +231,8 @@ function addTodo () {
         let todoText = createTodoText();
         let saveCancelContainer = createSaveCancelContainer();
         let todoAttribute = createTodoAttribute();
+        let deleteContainer = createDeleteContainer();
+        let deleteAnswerButtonsContainer = createDeleteAnswerButtonsContainer();
 
         let arrowButton = createArrowButton();
         let pencilButton = createPencilButton();
@@ -210,20 +245,30 @@ function addTodo () {
         todoItem.appendChild(todoItemContainer);
         todoItemContainer.appendChild(todoTextContainer);
         todoItemContainer.appendChild(iconContainer);
+
         todoTextContainer.appendChild(todoText);
         todoTextContainer.appendChild(saveCancelContainer);
         todoTextContainer.appendChild(todoAttribute);
+        todoTextContainer.appendChild(deleteContainer);
+
         todoText.appendChild(createHeartIcon());
         todoText.appendChild(todoTextP);
+
         saveCancelContainer.appendChild(createSaveButton());
         saveCancelContainer.appendChild(createCancelButton());
         todoAttribute.appendChild(createDate("2018.11.04"));
         todoAttribute.appendChild(createPriority("priority"));
+        deleteContainer.appendChild(createDeleteQuestion());
+        deleteContainer.appendChild(deleteAnswerButtonsContainer);
+        deleteAnswerButtonsContainer.appendChild(createDeleteYesButton());
+        deleteAnswerButtonsContainer.appendChild(createDeleteNoButton());
+
         iconContainer.appendChild(arrowButton);
         iconContainer.appendChild(pencilButton);
         iconContainer.appendChild(calendarButton);
         iconContainer.appendChild(exclamationButton);
         iconContainer.appendChild(trashButton);
+
         arrowButton.appendChild(createArrowIcon());
         pencilButton.appendChild(createPencilIcon());
         calendarButton.appendChild(createCalendarIcon());
@@ -286,10 +331,6 @@ function givePriority () {
 }
 
 
-function deleteTodo () {
-    event.currentTarget.parentNode.parentNode.parentNode.remove();
-}
-
 
 //when one of the four icons is clicked, they disappear after clicking
 function hideFourIcons (actualEvent) {
@@ -346,4 +387,21 @@ function cancelTextChanges () {
     //using the global variable 'text' to get back the original text after the user modifies it but in the and pushes cancel
     cancelButton.parentNode.previousSibling.children[1].textContent = text;
     
+}
+
+
+function deleteTodo () {
+    let trashButton = event.currentTarget;
+    trashButton.parentNode.previousSibling.children[3].classList.remove("is-hidden");
+
+    hideFourIcons(trashButton);
+}
+
+
+function deleteYes () {
+    event.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode.remove();
+}
+
+function deleteNo () {
+    event.currentTarget.parentNode.parentNode.classList.add("is-hidden");
 }
