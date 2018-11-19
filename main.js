@@ -1,3 +1,11 @@
+function getAddButton () {
+    let addButton = document.getElementById("adding-button");
+    addButton.addEventListener("click", addTodo);
+}
+
+getAddButton();
+
+
 function getInputValue () {
     let input = document.getElementById("todo-adding");
     return input.value;
@@ -83,6 +91,11 @@ function createDate (currentDate) {
     let date = document.createElement("p");
     date.textContent = currentDate;
     return date;
+}
+
+function showTodaysDate () {
+    let todaysDate = new Date();
+    return todaysDate.toDateString();
 }
 
 
@@ -256,7 +269,7 @@ function addTodo () {
 
         saveCancelContainer.appendChild(createSaveButton());
         saveCancelContainer.appendChild(createCancelButton());
-        todoAttribute.appendChild(createDate("2018.11.04"));
+        todoAttribute.appendChild(createDate(showTodaysDate()));
         todoAttribute.appendChild(createPriority("priority"));
         deleteContainer.appendChild(createDeleteQuestion());
         deleteContainer.appendChild(deleteAnswerButtonsContainer);

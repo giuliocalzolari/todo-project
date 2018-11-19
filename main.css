@@ -102,7 +102,7 @@ main {
     color: grey;
 }
 
-.adding-button {
+#adding-button {
     font-size: 16px;
     margin: 10px 0;
     border: 1px solid #f7d3ba;
@@ -112,7 +112,7 @@ main {
     transition: background 2s ease;
   }
   
-.adding-button:hover {
+#adding-button:hover {
     background: lightseagreen;
     cursor: pointer;
 }
