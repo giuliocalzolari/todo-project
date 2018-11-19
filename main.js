@@ -206,7 +206,7 @@ function addTodo () {
         let trashButton = createTrashButton();
 
 
-        todoListUl.appendChild(todoItem);
+        todoListUl.insertBefore(todoItem, todoListUl.firstElementChild);
         todoItem.appendChild(todoItemContainer);
         todoItemContainer.appendChild(todoTextContainer);
         todoItemContainer.appendChild(iconContainer);
