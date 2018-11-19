@@ -230,6 +230,13 @@ function addTodo () {
         exclamationButton.appendChild(createExclamationIcon());
         trashButton.appendChild(createTrashIcon());
     }
+
+    clearInputField();
+}
+
+
+function clearInputField () {
+    document.getElementById("todo-adding").value = "";
 }
 
 
