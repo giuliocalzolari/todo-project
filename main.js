@@ -95,7 +95,7 @@ function createDate (currentDate) {
 
 function showTodaysDate () {
     let todaysDate = new Date();
-    return todaysDate.toDateString();
+    return todaysDate.getDate() + " " + (todaysDate.getMonth()+1) + " " + todaysDate.getFullYear();
 }
 
 
@@ -154,7 +154,7 @@ function createIconContainer () {
 function createArrowButton () {
     let arrowButton = document.createElement("button");
     arrowButton.setAttribute("class", "arrow");
-    arrowButton.addEventListener("click", addFourIcons);
+    arrowButton.addEventListener("click", addFiveIcons);
     return arrowButton;
 }
 
@@ -187,6 +187,14 @@ function createTrashButton () {
     trashButton.classList.add("is-hidden");
     trashButton.addEventListener("click", deleteTodo);
     return trashButton;
+}
+
+function createCheckButton () {
+    let checkButton = document.createElement("button");
+    checkButton.setAttribute("class", "check");
+    checkButton.classList.add("is-hidden");
+    checkButton.addEventListener("click", todoDone);
+    return checkButton;
 }
 
 
@@ -224,6 +232,12 @@ function createTrashIcon () {
     return trashIcon;    
 }
 
+function createCheckIcon () {
+    let checkIcon = document.createElement("i");
+    checkIcon.setAttribute("class", "far fa-check-square check-icon");
+    return checkIcon;    
+}
+
 
 
 function addTodo () {
@@ -252,6 +266,7 @@ function addTodo () {
         let calendarButton = createCalendarButton();
         let exclamationButton = createExclamationButton();
         let trashButton = createTrashButton();
+        let checkButton = createCheckButton();
 
 
         todoListUl.insertBefore(todoItem, todoListUl.firstElementChild);
@@ -281,12 +296,14 @@ function addTodo () {
         iconContainer.appendChild(calendarButton);
         iconContainer.appendChild(exclamationButton);
         iconContainer.appendChild(trashButton);
+        iconContainer.appendChild(checkButton);
 
         arrowButton.appendChild(createArrowIcon());
         pencilButton.appendChild(createPencilIcon());
         calendarButton.appendChild(createCalendarIcon());
         exclamationButton.appendChild(createExclamationIcon());
         trashButton.appendChild(createTrashIcon());
+        checkButton.appendChild(createCheckIcon());
     }
 
     clearInputField();
@@ -298,31 +315,35 @@ function clearInputField () {
 }
 
 
-//showing additional 4 icons(buttons) when the arrow icon is clicked
-function addFourIcons () {
+//showing additional 5 icons(buttons) when the arrow icon is clicked
+function addFiveIcons () {
     console.log(event.currentTarget);
     let arrowButton = event.currentTarget;
 
     if (arrowButton.parentNode.children[1].classList.contains("is-hidden") === true &&
         arrowButton.parentNode.children[2].classList.contains("is-hidden") === true &&
         arrowButton.parentNode.children[3].classList.contains("is-hidden") === true &&
-        arrowButton.parentNode.children[4].classList.contains("is-hidden") === true) {
+        arrowButton.parentNode.children[4].classList.contains("is-hidden") === true &&
+        arrowButton.parentNode.children[5].classList.contains("is-hidden") === true) {
 
             arrowButton.parentNode.children[1].classList.remove("is-hidden");
             arrowButton.parentNode.children[2].classList.remove("is-hidden");
             arrowButton.parentNode.children[3].classList.remove("is-hidden");
             arrowButton.parentNode.children[4].classList.remove("is-hidden");
+            arrowButton.parentNode.children[5].classList.remove("is-hidden");
     }
 
     else if (arrowButton.parentNode.children[1].classList.contains("is-hidden") === false &&
             arrowButton.parentNode.children[2].classList.contains("is-hidden") === false &&
             arrowButton.parentNode.children[3].classList.contains("is-hidden") === false &&
-            arrowButton.parentNode.children[4].classList.contains("is-hidden") === false) {
+            arrowButton.parentNode.children[4].classList.contains("is-hidden") === false &&
+            arrowButton.parentNode.children[5].classList.contains("is-hidden") === false) {
 
                 arrowButton.parentNode.children[1].classList.add("is-hidden");
                 arrowButton.parentNode.children[2].classList.add("is-hidden");
                 arrowButton.parentNode.children[3].classList.add("is-hidden");
                 arrowButton.parentNode.children[4].classList.add("is-hidden");
+                arrowButton.parentNode.children[5].classList.add("is-hidden");
             }
     
 }
@@ -335,22 +356,23 @@ function givePriority () {
     if (exclamationButton.parentNode.previousSibling.children[2].children[1].classList.contains("is-hidden") === true) {
         
         exclamationButton.parentNode.previousSibling.children[2].children[1].classList.remove("is-hidden");
-        hideFourIcons(exclamationButton);
+        hideFiveIcons(exclamationButton);
     } 
     else if (exclamationButton.parentNode.previousSibling.children[2].children[1].classList.contains("is-hidden") === false){
         exclamationButton.parentNode.previousSibling.children[2].children[1].classList.add("is-hidden");
-        hideFourIcons(exclamationButton);
+        hideFiveIcons(exclamationButton);
     }
 }
 
 
 
-//when one of the four icons is clicked, they disappear after clicking
-function hideFourIcons (actualEvent) {
+//when one of the five icons is clicked, they disappear after clicking
+function hideFiveIcons (actualEvent) {
     actualEvent.parentNode.children[1].classList.add("is-hidden");
     actualEvent.parentNode.children[2].classList.add("is-hidden");
     actualEvent.parentNode.children[3].classList.add("is-hidden");
     actualEvent.parentNode.children[4].classList.add("is-hidden");
+    actualEvent.parentNode.children[5].classList.add("is-hidden");
 }
 
 
@@ -369,7 +391,7 @@ function editTodoTextP () {
     pencilButton.parentNode.previousSibling.children[1].children[0].classList.remove("is-hidden");
     pencilButton.parentNode.previousSibling.children[1].children[1].classList.remove("is-hidden");
 
-    hideFourIcons(pencilButton);
+    hideFiveIcons(pencilButton);
 }
 
 
@@ -407,7 +429,7 @@ function deleteTodo () {
     let trashButton = event.currentTarget;
     trashButton.parentNode.previousSibling.children[3].classList.remove("is-hidden");
 
-    hideFourIcons(trashButton);
+    hideFiveIcons(trashButton);
 }
 
 
@@ -417,4 +439,22 @@ function deleteYes () {
 
 function deleteNo () {
     event.currentTarget.parentNode.parentNode.classList.add("is-hidden");
+}
+
+
+function todoDone () {
+    let checkButton = event.currentTarget;
+    checkButton.parentNode.parentNode.parentNode.classList.add("change-opacity");
+
+    //this line is not working: if priority is given, its opacity doesn't change
+    checkButton.parentNode.previousSibling.children[2].children[1].classList.remove("priority");
+
+    checkButton.parentNode.children[0].classList.add("is-hidden");
+    checkButton.parentNode.children[1].classList.add("is-hidden");
+    checkButton.parentNode.children[2].classList.add("is-hidden");
+    checkButton.parentNode.children[3].classList.add("is-hidden");
+    checkButton.parentNode.children[4].classList.add("is-hidden");
+
+    checkButton.children[0].classList.add("is-green");
+
 }

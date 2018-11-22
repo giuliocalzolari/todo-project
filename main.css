@@ -135,6 +135,11 @@ main {
 
 
 
+.change-opacity {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+
 .todo-lists {
     display: flex;
     padding-top: 20px;
@@ -263,13 +268,13 @@ main {
     width: 200px;
 }
 
-.pencil, .calendar, .exclamation, .trash {
+.pencil, .calendar, .exclamation, .trash, .check {
     display: block;
     cursor: pointer;
 }
 
 
-.arrow, .pencil, .calendar, .exclamation, .trash {
+.arrow, .pencil, .calendar, .exclamation, .trash, .check {
     border: none;
     background: none;
     padding: 10px;
@@ -278,13 +283,13 @@ main {
 
 
 
-.arrow-icon, .pencil-icon, .calendar-icon, .exclamation-icon, .trash-icon {
+.arrow-icon, .pencil-icon, .calendar-icon, .exclamation-icon, .trash-icon, .check-icon {
     font-size: 20px;
     align-self: center;
     color: #f7d3ba;
 }
 
-.arrow-icon:hover, .pencil-icon:hover, .calendar-icon:hover, .exclamation-icon:hover, .trash-icon:hover {
+.arrow-icon:hover, .pencil-icon:hover, .calendar-icon:hover, .exclamation-icon:hover, .trash-icon:hover, .check-icon:hover {
     cursor: pointer;
     color: lightseagreen;
 }
@@ -296,6 +301,11 @@ main {
 
 .is-hidden {
     display: none;
+}
+
+.is-green {
+    color: lightseagreen;
+    opacity: 0.5;
 }
 
 
