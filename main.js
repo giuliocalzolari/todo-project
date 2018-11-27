@@ -6,6 +6,19 @@ function getAddButton () {
 getAddButton();
 
 
+function onPressEnter () {
+    let input = document.getElementById("todo-adding");
+    input.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            addTodo();
+        }
+    })
+}
+
+onPressEnter();
+
+
+
 function getInputValue () {
     let input = document.getElementById("todo-adding");
     return input.value;
@@ -95,7 +108,7 @@ function createDate (currentDate) {
 
 function showTodaysDate () {
     let todaysDate = new Date();
-    return todaysDate.getDate() + " " + (todaysDate.getMonth()+1) + " " + todaysDate.getFullYear();
+    return todaysDate.getDate() + ". " + (todaysDate.getMonth()+1) + ". " + todaysDate.getFullYear();
 }
 
 
