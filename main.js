@@ -420,6 +420,7 @@ function editTodoTextP (event) {
     
     setContenteditableToTodoTextP(pencilButton);
     changeStyleToTodoTextP(pencilButton);
+    onPressEnterInEditting(pencilButton);
 
     //show save&cancel buttons
     pencilButton.parentNode.previousSibling.children[1].children[0].classList.remove("is-hidden");
@@ -435,6 +436,18 @@ function setContenteditableToTodoTextP (event) {
 
 function changeStyleToTodoTextP (event) {
     event.parentNode.previousSibling.children[0].children[1].classList.add("change-todo-text-p-style");
+}
+
+
+function onPressEnterInEditting (event) {
+    event.parentNode.previousSibling.children[0].children[1].addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.target.classList.remove("change-todo-text-p-style");
+            event.target.setAttribute("contenteditable", "false");
+            event.target.parentNode.nextSibling.children[0].classList.add("is-hidden");
+            event.target.parentNode.nextSibling.children[0].nextSibling.classList.add("is-hidden");
+        }
+    })
 }
 
 
