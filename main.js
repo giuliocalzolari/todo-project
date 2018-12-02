@@ -538,3 +538,11 @@ function showPriorityFirst () {
       console.log(list);
 }
 
+
+
+//rákattintok a calendar ikonra --> megjelenik az ok gomb (+ a naptár)
+//ok gomb megjelenítése minden todo-nál úgy mint a save
+//oknak onclick methodja van, ami lefuttatja azt,hogy kivegye a naptárból a kiválasztott napot és átmásolja a testvérébe, ami a szövegdoboz,amiben a dátum van
+
+//a naptárra kattintással még nem történik semmi, csak kiválasztódik egy nap. Miután a felhasználó rákattint az ok gombra, az információ,hogy 
+//melyik nap volt kiválasztva, továbbítódik

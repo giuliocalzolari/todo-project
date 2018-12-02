@@ -5,10 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>YourToDo</title>
-        <link rel="icon" type="image/ico" href="img/clipboard-icon.png"/>
+        <link rel="icon" type="image/ico" href="images/clipboard-icon.png"/>
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+
+        <link rel="stylesheet" href="jquery-ui.min.css">
 
         <!-- font fontawesome here -->
         <script src="fontawesome-all.js"></script>
@@ -19,6 +21,20 @@
 
 
     <body>
+
+        <!-- header -->
+        <header>
+            <nav>
+                <h2>YourToDo</h2>
+                <div class="settings">
+                    <i class="fas fa-cogs"></i>
+                </div>
+            </nav>
+
+            <h1>Kitti's todos</h1>
+        </header>
+        <!-- end of header -->
+
 
         <!-- main section -->
         <main>
@@ -80,8 +96,38 @@
             </article>
             <!-- end of todos -->
 
+
+            <!-- calendar -->
+            <div id="calendar"></div>
+            <!-- end of calendar -->
+
         </main>
         <!-- end of main section -->
+
+
+        <!-- footer -->
+        <footer>
+            <div class="footer-trademark">
+                <p>&#0169; YourToDo 2018</p>
+            </div>
+            <div class="website-credit">
+                <p>website created by <a href="https://www.kittitoth.com/" target="_blank">Kitti</a></p>
+            </div>
+        </footer>
+        <!-- end of footer -->
+
+
+        <!-- jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="jquery-ui.min.js"></script>
+        <script>
+            $('#calendar').datepicker({
+                inline: true,
+                firstDay: 1,
+                showOtherMonths: true,
+                dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+            });
+        </script>
 
 
         <!-- JS files -->
