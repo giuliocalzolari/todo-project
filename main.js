@@ -1,3 +1,5 @@
+let list = [];
+
 function getAddButton () {
     let addButton = document.getElementById("adding-button");
     addButton.addEventListener("click", addTodo);
@@ -252,6 +254,7 @@ function createCheckIcon () {
 }
 
 
+let i=0;
 
 function addTodo () {
     let todoListUl = document.getElementById("todo-lists-ul");
@@ -284,6 +287,7 @@ function addTodo () {
 
         todoListUl.insertBefore(todoItem, todoListUl.firstElementChild);
         todoItem.appendChild(todoItemContainer);
+        todoItem.value = i;
         todoItemContainer.appendChild(todoTextContainer);
         todoItemContainer.appendChild(iconContainer);
 
@@ -317,11 +321,25 @@ function addTodo () {
         exclamationButton.appendChild(createExclamationIcon());
         trashButton.appendChild(createTrashIcon());
         checkButton.appendChild(createCheckIcon());
+
+        createTodoObject(todoAttribute.children[0].textContent, priorityToNumber(todoAttribute));
+        console.log(list);
+        i = i+1;
+
+        dateToNumber(todoAttribute.children[0].textContent);
     }
 
     clearInputField();
 }
 
+function priorityToNumber(attribute) {
+    if(attribute.children[1].classList.contains("is-hidden") === false) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
 
 function clearInputField () {
     document.getElementById("todo-adding").value = "";
@@ -362,17 +380,20 @@ function addFiveIcons () {
 }
 
 
-//show-hide priority when the pencil icon is clicked
+//show-hide priority when the exclamation mark icon is clicked
 function givePriority () {
     let exclamationButton = event.currentTarget;
 
     if (exclamationButton.parentNode.previousSibling.children[2].children[1].classList.contains("is-hidden") === true) {
         
         exclamationButton.parentNode.previousSibling.children[2].children[1].classList.remove("is-hidden");
+        list[exclamationButton.parentNode.parentNode.parentNode.value].priority = 1;
         hideFiveIcons(exclamationButton);
     } 
-    else if (exclamationButton.parentNode.previousSibling.children[2].children[1].classList.contains("is-hidden") === false){
+    else if (exclamationButton.parentNode.previousSibling.children[2].children[1].classList.contains("is-hidden") === false) {
+
         exclamationButton.parentNode.previousSibling.children[2].children[1].classList.add("is-hidden");
+        list[exclamationButton.parentNode.parentNode.parentNode.value].priority = 0;
         hideFiveIcons(exclamationButton);
     }
 }
@@ -471,3 +492,36 @@ function todoDone () {
     checkButton.children[0].classList.add("is-green");
 
 }
+
+
+
+function createTodoObject(date, priority) {
+    let todoObject = {
+        date: date,
+        priority: priority
+    }
+    list.push(todoObject);
+}
+
+
+//not working
+function dateToNumber (x) {
+    list.map(date => new Date(date.date).getTime());
+}
+
+
+function getShowPriorityButton () {
+    let showPriorityButton = document.getElementById("show-priority-button");
+    showPriorityButton.addEventListener("click", showPriorityFirst);
+}
+
+getShowPriorityButton();
+
+
+function showPriorityFirst () {
+    list.sort(function (a, b) {
+        return a.priority - b.priority;
+      });
+      console.log(list);
+}
+

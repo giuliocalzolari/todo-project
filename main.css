@@ -118,7 +118,7 @@ main {
 }
 
 
-.show-priority-button, .show-oldest-button {
+#show-priority-button, #show-oldest-button {
     font-size: 14px;
     padding: 5px;
     border: 1px solid #f7d3ba;
@@ -128,7 +128,7 @@ main {
 }
 
 
-.show-priority-button:hover, .show-oldest-button:hover {
+#show-priority-button:hover, #show-oldest-button:hover {
     cursor: pointer;
     background:lightseagreen;
 }
