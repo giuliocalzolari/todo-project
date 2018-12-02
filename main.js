@@ -347,7 +347,7 @@ function clearInputField () {
 
 
 //showing additional 5 icons(buttons) when the arrow icon is clicked
-function addFiveIcons () {
+function addFiveIcons (event) {
     console.log(event.currentTarget);
     let arrowButton = event.currentTarget;
 
@@ -381,7 +381,7 @@ function addFiveIcons () {
 
 
 //show-hide priority when the exclamation mark icon is clicked
-function givePriority () {
+function givePriority (event) {
     let exclamationButton = event.currentTarget;
 
     if (exclamationButton.parentNode.previousSibling.children[2].children[1].classList.contains("is-hidden") === true) {
@@ -401,18 +401,18 @@ function givePriority () {
 
 
 //when one of the five icons is clicked, they disappear after clicking
-function hideFiveIcons (actualEvent) {
-    actualEvent.parentNode.children[1].classList.add("is-hidden");
-    actualEvent.parentNode.children[2].classList.add("is-hidden");
-    actualEvent.parentNode.children[3].classList.add("is-hidden");
-    actualEvent.parentNode.children[4].classList.add("is-hidden");
-    actualEvent.parentNode.children[5].classList.add("is-hidden");
+function hideFiveIcons (event) {
+    event.parentNode.children[1].classList.add("is-hidden");
+    event.parentNode.children[2].classList.add("is-hidden");
+    event.parentNode.children[3].classList.add("is-hidden");
+    event.parentNode.children[4].classList.add("is-hidden");
+    event.parentNode.children[5].classList.add("is-hidden");
 }
 
 
 let text;
 
-function editTodoTextP () {
+function editTodoTextP (event) {
     let pencilButton = event.currentTarget;
     
     //saving the original text of todo element to a global variable
@@ -429,16 +429,16 @@ function editTodoTextP () {
 }
 
 
-function setContenteditableToTodoTextP (actualEvent) {
-    actualEvent.parentNode.previousSibling.children[0].children[1].setAttribute("contenteditable", "true");
+function setContenteditableToTodoTextP (event) {
+    event.parentNode.previousSibling.children[0].children[1].setAttribute("contenteditable", "true");
 }
 
-function changeStyleToTodoTextP (actualEvent) {
-    actualEvent.parentNode.previousSibling.children[0].children[1].classList.add("change-todo-text-p-style");
+function changeStyleToTodoTextP (event) {
+    event.parentNode.previousSibling.children[0].children[1].classList.add("change-todo-text-p-style");
 }
 
 
-function saveTextChanges () {
+function saveTextChanges (event) {
     let saveButton = event.currentTarget;
     saveButton.parentNode.previousSibling.children[1].classList.remove("change-todo-text-p-style");
     saveButton.parentNode.previousSibling.children[1].setAttribute("contenteditable", "false");
@@ -446,7 +446,7 @@ function saveTextChanges () {
     saveButton.nextSibling.classList.add("is-hidden");
 }
 
-function cancelTextChanges () {
+function cancelTextChanges (event) {
     let cancelButton = event.currentTarget;
     cancelButton.parentNode.previousSibling.children[1].classList.remove("change-todo-text-p-style");
     cancelButton.parentNode.previousSibling.children[1].setAttribute("contenteditable", "false");
@@ -459,7 +459,7 @@ function cancelTextChanges () {
 }
 
 
-function deleteTodo () {
+function deleteTodo (event) {
     let trashButton = event.currentTarget;
     trashButton.parentNode.previousSibling.children[3].classList.remove("is-hidden");
 
@@ -467,16 +467,16 @@ function deleteTodo () {
 }
 
 
-function deleteYes () {
+function deleteYes (event) {
     event.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode.remove();
 }
 
-function deleteNo () {
+function deleteNo (event) {
     event.currentTarget.parentNode.parentNode.classList.add("is-hidden");
 }
 
 
-function todoDone () {
+function todoDone (event) {
     let checkButton = event.currentTarget;
     checkButton.parentNode.parentNode.parentNode.classList.add("change-opacity");
 
