@@ -565,3 +565,21 @@ function editDate () {
     
     hideFiveIcons(calendarButton);
 }
+
+
+
+function editUsername () {
+    let username = document.getElementById("username");
+
+    username.addEventListener("dblclick", function(event) {
+        event.target.setAttribute("contenteditable", "true");
+    })
+
+    username.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.target.setAttribute("contenteditable", "false");
+        }
+    })
+}
+
+editUsername();
