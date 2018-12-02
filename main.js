@@ -328,6 +328,8 @@ function addTodo () {
         i = i+1;
 
         dateToNumber(todoAttribute.children[0].textContent);
+
+        warning.textContent = "";
     }
 
     clearInputField();

@@ -82,7 +82,7 @@ main {
 }
 
 
-.warning-empty {
+#warning-empty {
     margin-top: 15px;
     font-size: 16px;
     color: red;
