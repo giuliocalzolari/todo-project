@@ -185,6 +185,7 @@ function createCalendarButton () {
     let calendarButton = document.createElement("button");
     calendarButton.setAttribute("class", "calendar");
     calendarButton.classList.add("is-hidden");
+    calendarButton.addEventListener("click", editDate);
     return calendarButton;
 }
 
@@ -539,10 +540,26 @@ function showPriorityFirst () {
 }
 
 
+function createOkButtonForCalendar (date) {
+    let okButtonCalendar = document.createElement("button");
+    okButtonCalendar.classList.add("ok-button-calendar");
+    okButtonCalendar.classList.add("ok-button-calendar:hover");
+    okButtonCalendar.textContent = "ok";
+    okButtonCalendar.addEventListener("click", function (date){
+        //how to get the event from the editDate() function??
+        //by having the event, we go up the tree to the date element
+        //modifying the date with the function on jquery website: http://api.jqueryui.com/datepicker/#method-getDate
+    });
 
-//rákattintok a calendar ikonra --> megjelenik az ok gomb (+ a naptár)
-//ok gomb megjelenítése minden todo-nál úgy mint a save
-//oknak onclick methodja van, ami lefuttatja azt,hogy kivegye a naptárból a kiválasztott napot és átmásolja a testvérébe, ami a szövegdoboz,amiben a dátum van
+    let calendarContainer = document.getElementById("calendar-container");
+    calendarContainer.appendChild(okButtonCalendar);
+}
 
-//a naptárra kattintással még nem történik semmi, csak kiválasztódik egy nap. Miután a felhasználó rákattint az ok gombra, az információ,hogy 
-//melyik nap volt kiválasztva, továbbítódik
+
+function editDate () {
+    let calendarButton = event.currentTarget;
+    let date = calendarButton.parentNode.previousSibling.children[2].children[0];
+    createOkButtonForCalendar(date);
+    
+    hideFiveIcons(calendarButton);
+}

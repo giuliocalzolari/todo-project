@@ -310,31 +310,10 @@ main {
 
 
 
-.todo-modify {
-    list-style-type: none;
-}
-
-.todo-modify li {
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 0 5px;
-    font-size: 16px;
-    transition: backgorund 2s ease;
-}
-
-
-.todo-modify li:hover {
-    background: lightseagreen;
-    cursor: pointer;
-}
-
-
-
-
 
 
 /* --------------------sidebar - calendar------------------ */
-#calendar {
+#calendar-container {
     width: 40%;
     display: flex;
     flex-direction: column;
@@ -342,59 +321,19 @@ main {
 }
 
 
-.switch-display {
-    display: flex;
-    padding-bottom: 20px;
-}
-
-
-.switch-display-button {
-    font-size: 16px;
-    margin: 0 10px;
-    border: 1px solid #f7d3ba;
-    background: #f7d3ba;
-    border-radius: 10px;
-    padding: 5px;
+.ok-button-calendar {
     font-size: 14px;
-}
-
-.switch-display-button:hover {
-    background: lightseagreen;
-    cursor: pointer;
-}
-
-
-
-
-.calendar-days {
-    padding: 10px 90px;
-    background: #e6e7e5;
+    padding: 5px;
+    border: 1px solid #f7d3ba;
     border-radius: 10px;
-}
-
-
-
-.calendar-days ul {
-    /* display: flex; */
-    /* flex-direction: column; */
-    list-style-type: none;
-    /* width: 30%; */
-    overflow: inherit;
-    
-}
-
-.calendar-days ul li {
     background: #f7d3ba;
-    border-radius: 10px;
-    padding: 5px 10px;
-    margin: 5px 0;
-    /* min-width: 120px; */
-    text-align: center;
+    transition: background 2s ease;
+    margin: 5px 0px;
 }
 
-.calendar-days ul li:hover {
-    background: lightseagreen;
+.ok-button-calendar:hover {
     cursor: pointer;
+    background:lightseagreen;
 }
 
 
