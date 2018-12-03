@@ -1,4 +1,14 @@
-let list = [];
+$( document ).ready(function() {
+
+
+//jquery library datepicker
+$('#calendar').datepicker({
+    inline: true,
+    firstDay: 1,
+    showOtherMonths: true,
+    dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+});
+
 
 function getAddButton () {
     let addButton = document.getElementById("adding-button");
@@ -255,7 +265,6 @@ function createCheckIcon () {
 }
 
 
-let i=0;
 
 function addTodo () {
     let todoListUl = document.getElementById("todo-lists-ul");
@@ -288,7 +297,6 @@ function addTodo () {
 
         todoListUl.insertBefore(todoItem, todoListUl.firstElementChild);
         todoItem.appendChild(todoItemContainer);
-        todoItem.value = i;
         todoItemContainer.appendChild(todoTextContainer);
         todoItemContainer.appendChild(iconContainer);
 
@@ -302,8 +310,12 @@ function addTodo () {
 
         saveCancelContainer.appendChild(createSaveButton());
         saveCancelContainer.appendChild(createCancelButton());
+        
         todoAttribute.appendChild(createDate(showTodaysDate()));
+        //Date.now() gives the time in milliseconds, on which the todo-s can be sorted
+        todoAttribute.value = Date.now();
         todoAttribute.appendChild(createPriority("priority"));
+        
         deleteContainer.appendChild(createDeleteQuestion());
         deleteContainer.appendChild(deleteAnswerButtonsContainer);
         deleteAnswerButtonsContainer.appendChild(createDeleteYesButton());
@@ -323,26 +335,13 @@ function addTodo () {
         trashButton.appendChild(createTrashIcon());
         checkButton.appendChild(createCheckIcon());
 
-        createTodoObject(todoAttribute.children[0].textContent, priorityToNumber(todoAttribute));
-        console.log(list);
-        i = i+1;
-
-        dateToNumber(todoAttribute.children[0].textContent);
-
+    
         warning.textContent = "";
     }
 
     clearInputField();
 }
 
-function priorityToNumber(attribute) {
-    if(attribute.children[1].classList.contains("is-hidden") === false) {
-        return 1;
-    }
-    else {
-        return 0;
-    }
-}
 
 function clearInputField () {
     document.getElementById("todo-adding").value = "";
@@ -390,13 +389,11 @@ function givePriority (event) {
     if (exclamationButton.parentNode.previousSibling.children[2].children[1].classList.contains("is-hidden") === true) {
         
         exclamationButton.parentNode.previousSibling.children[2].children[1].classList.remove("is-hidden");
-        list[exclamationButton.parentNode.parentNode.parentNode.value].priority = 1;
         hideFiveIcons(exclamationButton);
     } 
     else if (exclamationButton.parentNode.previousSibling.children[2].children[1].classList.contains("is-hidden") === false) {
 
         exclamationButton.parentNode.previousSibling.children[2].children[1].classList.add("is-hidden");
-        list[exclamationButton.parentNode.parentNode.parentNode.value].priority = 0;
         hideFiveIcons(exclamationButton);
     }
 }
@@ -511,20 +508,6 @@ function todoDone (event) {
 
 
 
-function createTodoObject(date, priority) {
-    let todoObject = {
-        date: date,
-        priority: priority
-    }
-    list.push(todoObject);
-}
-
-
-//not working
-function dateToNumber (x) {
-    list.map(date => new Date(date.date).getTime());
-}
-
 
 function getShowPriorityButton () {
     let showPriorityButton = document.getElementById("show-priority-button");
@@ -534,12 +517,84 @@ function getShowPriorityButton () {
 getShowPriorityButton();
 
 
+function getShowOldestButton () {
+    let showOldestButton = document.getElementById("show-oldest-button");
+    showOldestButton.addEventListener("click", showOldestFirst);
+}
+
+getShowOldestButton();
+
+
+
+function priorityToNumber(attribute) {
+    if(attribute.classList.contains("is-hidden")) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+
+//sorting todos on the basis of priority
 function showPriorityFirst () {
+
+    //constructing the array from DOM as a local variable in the sort function
+    let todoListUl = document.getElementById("todo-lists-ul");
+    let items = todoListUl.children;
+    let list = [];
+
+    for (let i = 0; i < items.length; i++) {
+        let todoObject = {
+            node: items[i],
+            date: items[i].children[0].children[0].children[2].children[0].textContent,
+            priority: priorityToNumber(items[i].children[0].children[0].children[2].children[1])
+        }
+
+        list.push(todoObject);
+    }
+
+    //sort the array
     list.sort(function (a, b) {
         return a.priority - b.priority;
-      });
-      console.log(list);
+    });
+
+    //rearrange the items in the DOM to correspond to the sorted array
+    //functions used for adding a node will move the node if it’s already in the DOM
+    for (let counter = 0; counter < list.length; counter++) {
+        todoListUl.appendChild(list[counter].node);
+    }
 }
+
+
+
+//sorting todos on the basis of date
+function showOldestFirst () {
+    let todoListUl = document.getElementById("todo-lists-ul");
+    let items = todoListUl.children;
+    let list = [];
+
+    for (let i = 0; i < items.length; i++) {
+        let todoObject = {
+            node: items[i],
+            date: items[i].children[0].children[0].children[2].value,
+            priority: priorityToNumber(items[i].children[0].children[0].children[2].children[1])
+        }
+
+        list.push(todoObject);
+    }
+
+    list.sort(function (a, b) {
+        return a.date - b.date;
+    });
+
+    for (let counter = 0; counter < list.length; counter++) {
+        todoListUl.appendChild(list[counter].node);
+    }
+}
+
+
+
 
 
 function createOkButtonForCalendar (date) {
@@ -547,10 +602,8 @@ function createOkButtonForCalendar (date) {
     okButtonCalendar.classList.add("ok-button-calendar");
     okButtonCalendar.classList.add("ok-button-calendar:hover");
     okButtonCalendar.textContent = "ok";
-    okButtonCalendar.addEventListener("click", function (date){
-        //how to get the event from the editDate() function??
-        //by having the event, we go up the tree to the date element
-        //modifying the date with the function on jquery website: http://api.jqueryui.com/datepicker/#method-getDate
+    okButtonCalendar.addEventListener("click", function (event){
+        date.textContent = $( "#calendar" ).datepicker("getDate");
     });
 
     let calendarContainer = document.getElementById("calendar-container");
@@ -565,6 +618,8 @@ function editDate () {
     
     hideFiveIcons(calendarButton);
 }
+
+
 
 
 
@@ -583,3 +638,7 @@ function editUsername () {
 }
 
 editUsername();
+
+
+
+});  //end of jquery
