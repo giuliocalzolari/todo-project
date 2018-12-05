@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 
-
+/*
 //jquery library datepicker
 $('#calendar').datepicker({
     inline: true,
@@ -8,6 +8,10 @@ $('#calendar').datepicker({
     showOtherMonths: true,
     dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 });
+*/
+
+
+
 
 
 function getAddButton () {
@@ -30,12 +34,14 @@ function onPressEnter () {
 onPressEnter();
 
 
-
 function getInputValue () {
     let input = document.getElementById("todo-adding");
     return input.value;
 }
 
+
+
+//----------------------------------------------------------------CREATING ELEMENTS---------------------------------------------------------
 
 function createTodoItem () {
     let todoItem = document.createElement("li");
@@ -115,6 +121,7 @@ function createTodoAttribute () {
 function createDate (currentDate) {
     let date = document.createElement("p");
     date.textContent = currentDate;
+    date.setAttribute("class", "datepicker");
     return date;
 }
 
@@ -195,7 +202,7 @@ function createCalendarButton () {
     let calendarButton = document.createElement("button");
     calendarButton.setAttribute("class", "calendar");
     calendarButton.classList.add("is-hidden");
-    calendarButton.addEventListener("click", editDate);
+    //calendarButton.addEventListener("click", editDate);
     return calendarButton;
 }
 
@@ -266,6 +273,9 @@ function createCheckIcon () {
 
 
 
+
+//----------------------------------------------------------------APPENDING ELEMENTS---------------------------------------------------------
+
 function addTodo () {
     let todoListUl = document.getElementById("todo-lists-ul");
     let warning = document.getElementById("warning-empty");
@@ -294,6 +304,8 @@ function addTodo () {
         let trashButton = createTrashButton();
         let checkButton = createCheckButton();
 
+        let dateInput = createInputDate();
+
 
         todoListUl.insertBefore(todoItem, todoListUl.firstElementChild);
         todoItem.appendChild(todoItemContainer);
@@ -315,6 +327,8 @@ function addTodo () {
         //Date.now() gives the time in milliseconds, on which the todo-s can be sorted
         todoAttribute.value = Date.now();
         todoAttribute.appendChild(createPriority("priority"));
+        todoAttribute.appendChild(dateInput);
+        //$(dateInput).datepicker(datePickerOptions);
         
         deleteContainer.appendChild(createDeleteQuestion());
         deleteContainer.appendChild(deleteAnswerButtonsContainer);
@@ -324,6 +338,27 @@ function addTodo () {
         iconContainer.appendChild(arrowButton);
         iconContainer.appendChild(pencilButton);
         iconContainer.appendChild(calendarButton);
+        $(calendarButton).click(function(event) {
+            console.log(event.currentTarget);
+            $(dateInput).datepicker({
+                show: true,
+                dateFormat: 'd. m. yy',
+                inline: true,
+                firstDay: 1,
+                showOtherMonths: true,
+                dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                onSelect: updateDate(event)
+
+            });
+        });
+
+
+        /*
+        $(calendarButton).click(function(event) {
+            $(".datepicker").datepicker("show");
+        });
+        */
+
         iconContainer.appendChild(exclamationButton);
         iconContainer.appendChild(trashButton);
         iconContainer.appendChild(checkButton);
@@ -347,6 +382,11 @@ function clearInputField () {
     document.getElementById("todo-adding").value = "";
 }
 
+
+
+
+
+//---------------------------------------------------------------------------FUNCTIONALITY ON ICONS-----------------------------------------
 
 //showing additional 5 icons(buttons) when the arrow icon is clicked
 function addFiveIcons (event) {
@@ -382,6 +422,9 @@ function addFiveIcons (event) {
 }
 
 
+
+
+
 //show-hide priority when the exclamation mark icon is clicked
 function givePriority (event) {
     let exclamationButton = event.currentTarget;
@@ -400,6 +443,8 @@ function givePriority (event) {
 
 
 
+
+
 //when one of the five icons is clicked, they disappear after clicking
 function hideFiveIcons (event) {
     event.parentNode.children[1].classList.add("is-hidden");
@@ -410,6 +455,10 @@ function hideFiveIcons (event) {
 }
 
 
+
+
+
+//todo text becomes editable when the pencil icon is clicked
 let text;
 
 function editTodoTextP (event) {
@@ -472,6 +521,9 @@ function cancelTextChanges (event) {
 }
 
 
+
+
+//delete todo when trash icon is clicked
 function deleteTodo (event) {
     let trashButton = event.currentTarget;
     trashButton.parentNode.previousSibling.children[3].classList.remove("is-hidden");
@@ -489,6 +541,10 @@ function deleteNo (event) {
 }
 
 
+
+
+
+//make the todo faint when the ckeck icon is clicked
 function todoDone (event) {
     let checkButton = event.currentTarget;
     checkButton.parentNode.parentNode.parentNode.classList.add("change-opacity");
@@ -508,6 +564,9 @@ function todoDone (event) {
 
 
 
+
+
+//------------------------------------------------------------------------SORTING-------------------------------------------------------
 
 function getShowPriorityButton () {
     let showPriorityButton = document.getElementById("show-priority-button");
@@ -597,6 +656,46 @@ function showOldestFirst () {
 
 
 
+
+
+//--------------------------------------------------------------CALENDAR------------------------------------------------------------
+
+function createInputDate () {
+    let dateInput = document.createElement("input");
+    dateInput.id = "dateInputText";
+    dateInput.type = "text";
+    dateInput.className = "datepicker";
+    dateInput.style.width = "70px";
+    dateInput.readonly = "readonly";
+
+    return dateInput;
+}
+
+
+let datePickerOptions = {
+    dateFormat: 'd. m. yy',
+    inline: true,
+    firstDay: 1,
+    showOtherMonths: true,
+    dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+}
+
+
+$(".datepicker").datepicker(datePickerOptions);
+
+
+
+function updateDate(event, dateText, obj) {
+    let calendarButton = event.currentTarget;
+    let date = calendarButton.parentNode.previousSibling.children[2].children[0];
+    date.textContent = dateText;
+}
+
+
+
+
+
+/*
 function createOkButtonForCalendar (date) {
     let okButtonCalendar = document.createElement("button");
     okButtonCalendar.classList.add("ok-button-calendar");
@@ -618,10 +717,13 @@ function editDate () {
     
     hideFiveIcons(calendarButton);
 }
+*/
 
 
 
 
+
+//----------------------------------------------------------------USERNAME----------------------------------------------------
 
 function editUsername () {
     let username = document.getElementById("username");
