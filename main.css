@@ -309,6 +309,31 @@ main {
 }
 
 
+.is-light-green-background {
+    background:  #FAF9F9;
+}
+
+.is-green-background {
+    background: #ADD2C9;
+}
+
+.is-dark-green-background {
+    background: #5EA3A3;
+}
+
+.is-darkest-green-background {
+    background: #488B8F;
+}
+
+
+test {
+    color: #488B8F;
+    color: #5EA3A3;
+    color: #ADD2C9;
+    color: #FAF9F9;
+}
+
+
 
 
 
