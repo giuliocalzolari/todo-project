@@ -294,6 +294,7 @@ main {
     color: lightseagreen;
 }
 
+
 .arrow-icon {
     display: flex;
 }
@@ -302,6 +303,20 @@ main {
 .is-hidden {
     display: none;
 }
+
+.datepicker-input {
+    visibility: hidden;
+    width: 0px;
+}
+
+
+.ui-widget-content {
+    border: 1px solid #dddddd;
+    border-radius: 20px;
+	background: #ffffff;
+	color: #333333;
+}
+
 
 .is-green {
     color: lightseagreen;

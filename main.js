@@ -1,17 +1,5 @@
 $( document ).ready(function() {
 
-/*
-//jquery library datepicker
-$('#calendar').datepicker({
-    inline: true,
-    firstDay: 1,
-    showOtherMonths: true,
-    dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-});
-*/
-
-
-
 
 
 function getAddButton () {
@@ -328,7 +316,6 @@ function addTodo () {
         todoAttribute.value = Date.now();
         todoAttribute.appendChild(createPriority("priority"));
         todoAttribute.appendChild(dateInput);
-        //$(dateInput).datepicker(datePickerOptions);
         
         deleteContainer.appendChild(createDeleteQuestion());
         deleteContainer.appendChild(deleteAnswerButtonsContainer);
@@ -339,25 +326,18 @@ function addTodo () {
         iconContainer.appendChild(pencilButton);
         iconContainer.appendChild(calendarButton);
         $(calendarButton).click(function(event) {
-            console.log(event.currentTarget);
+            hideFiveIcons(event.currentTarget);
+
             $(dateInput).datepicker({
-                show: true,
                 dateFormat: 'd. m. yy',
                 inline: true,
                 firstDay: 1,
                 showOtherMonths: true,
                 dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                onSelect: updateDate(event)
-
+                onSelect: updateDate
             });
+            $(dateInput).datepicker("show");
         });
-
-
-        /*
-        $(calendarButton).click(function(event) {
-            $(".datepicker").datepicker("show");
-        });
-        */
 
         iconContainer.appendChild(exclamationButton);
         iconContainer.appendChild(trashButton);
@@ -662,62 +642,19 @@ function showOldestFirst () {
 
 function createInputDate () {
     let dateInput = document.createElement("input");
-    dateInput.id = "dateInputText";
     dateInput.type = "text";
-    dateInput.className = "datepicker";
-    dateInput.style.width = "70px";
+    dateInput.classList.add("datepicker-input");
     dateInput.readonly = "readonly";
 
     return dateInput;
 }
 
 
-let datePickerOptions = {
-    dateFormat: 'd. m. yy',
-    inline: true,
-    firstDay: 1,
-    showOtherMonths: true,
-    dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-}
-
-
-$(".datepicker").datepicker(datePickerOptions);
-
-
-
-function updateDate(event, dateText, obj) {
-    let calendarButton = event.currentTarget;
-    let date = calendarButton.parentNode.previousSibling.children[2].children[0];
+function updateDate(dateText, event) {
+    let date = event.input[0].parentElement.children[0];
     date.textContent = dateText;
 }
 
-
-
-
-
-/*
-function createOkButtonForCalendar (date) {
-    let okButtonCalendar = document.createElement("button");
-    okButtonCalendar.classList.add("ok-button-calendar");
-    okButtonCalendar.classList.add("ok-button-calendar:hover");
-    okButtonCalendar.textContent = "ok";
-    okButtonCalendar.addEventListener("click", function (event){
-        date.textContent = $( "#calendar" ).datepicker("getDate");
-    });
-
-    let calendarContainer = document.getElementById("calendar-container");
-    calendarContainer.appendChild(okButtonCalendar);
-}
-
-
-function editDate () {
-    let calendarButton = event.currentTarget;
-    let date = calendarButton.parentNode.previousSibling.children[2].children[0];
-    createOkButtonForCalendar(date);
-    
-    hideFiveIcons(calendarButton);
-}
-*/
 
 
 
