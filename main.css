@@ -110,10 +110,10 @@ main {
     border-radius: 10px;
     padding: 5px 10px;
     transition: background 2s ease;
-  }
+}
   
 #adding-button:hover {
-    background: lightseagreen;
+    background: #a6aa9c;
     cursor: pointer;
 }
 
@@ -130,7 +130,7 @@ main {
 
 #show-priority-button:hover, #show-oldest-button:hover {
     cursor: pointer;
-    background:lightseagreen;
+    background:#a6aa9c;
 }
 
 
@@ -195,7 +195,7 @@ main {
 
 .save-button:hover, .cancel-button:hover {
     cursor: pointer;
-    background:lightseagreen;
+    background:#a6aa9c;
 }
 
 .save-button {
@@ -250,7 +250,7 @@ main {
 
 .delete-yes:hover, .delete-no:hover {
     cursor: pointer;
-    background:lightseagreen;
+    background:#a6aa9c;
 }
 
 
@@ -291,7 +291,7 @@ main {
 
 .arrow-icon:hover, .pencil-icon:hover, .calendar-icon:hover, .exclamation-icon:hover, .trash-icon:hover, .check-icon:hover {
     cursor: pointer;
-    color: lightseagreen;
+    color: #a6aa9c;
 }
 
 
@@ -312,16 +312,32 @@ main {
 
 .ui-widget-content {
     border: 1px solid #dddddd;
-    border-radius: 20px;
+    border-radius: 10px;
 	background: #ffffff;
 	color: #333333;
 }
 
 
 .is-green {
-    color: lightseagreen;
+    color: #a6aa9c;
     opacity: 0.5;
 }
+
+
+/* -----------------------------------EXAMPLE!!! */
+.dark #adding-button:hover {
+    background: yellow;
+}
+
+.dark .piority {
+    color: yellow;
+}
+
+.ui-widget-header {
+    background: #5EA3A3;
+}
+/* ------------------------------------EXAMPLE!!! */
+
 
 
 .is-light-green-background {
@@ -353,6 +369,7 @@ test {
 
 
 /* --------------------sidebar - calendar------------------ */
+/*
 #calendar-container {
     width: 40%;
     display: flex;
@@ -375,7 +392,7 @@ test {
     cursor: pointer;
     background:lightseagreen;
 }
-
+*/
 
 
 
@@ -391,30 +408,106 @@ footer {
     background: #e6e7e5;
     text-align: center;
     padding: 10px 0;
-  }
+}
   
-  footer p {
+footer p {
     font-size: 0.875em;
-  }
+}
 
-  .footer-trademark p {
+.footer-trademark p {
     font-family: 'Yellowtail', cursive;
-  }
+}
   
   
-  .website-credit p {
+.website-credit p {
     color: #474a56;
     font-size: 0.75em;
-  }
+}
   
-  .website-credit a {
+.website-credit a {
     text-decoration: none;
     color: #474a56;
     font-style: italic;
     font-size: 0.75em;
     transition: font-size 1s ease;
-  }
+}
   
-  .website-credit a:hover {
+.website-credit a:hover {
     font-size: 1em;
-  }
+}
+
+
+
+
+
+/* ------------------------------different color themes---------------------- */
+
+/* green+purple {
+
+color: #eaafaf;
+color: #F1FFF1;
+color: #5EA3A3;
+color: #DDE0AB;
+
+} */
+
+.green header,
+.green footer {
+    background: #5EA3A3;
+}
+
+.green h1,
+.green main {
+    background: #F1FFF1;
+}
+
+.green #todo-adding {
+    border: 2px solid #c4c1e0;
+}
+
+.green #adding-button,
+.green #show-priority-button,
+.green #show-oldest-button,
+.green .save-button,
+.green .cancel-button,
+.green .delete-yes,
+.green .delete-no {
+    border: 1px solid #8559a5;
+    background: #c4c1e0;
+}
+
+
+.green #adding-button:hover,
+.green #show-priority-button:hover,
+.green #show-oldest-button:hover,
+.green .save-button:hover,
+.green .cancel-button:hover,
+.green .delete-yes:hover,
+.green .delete-no:hover {
+    background: #DDE0AB;
+}
+
+
+.green .change-todo-text-p-style {
+    background: white;
+    border: 1px solid #8559a5;
+}
+
+
+.green .arrow-icon,
+.green .pencil-icon,
+.green .calendar-icon,
+.green .exclamation-icon,
+.green .trash-icon,
+.green .check-icon {
+    color: #c4c1e0;
+}
+
+.green .arrow-icon:hover,
+.green .pencil-icon:hover,
+.green .calendar-icon:hover, 
+.green .exclamation-icon:hover,
+.green .trash-icon:hover,
+.green .check-icon:hover {
+    color: #DDE0AB;
+}

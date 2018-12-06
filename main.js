@@ -682,7 +682,7 @@ editUsername();
 
 
 
-
+//---------------------------------------------------------CHANGING COLOR STYLE-------------------------------------------
 
 function getSettings () {
     let settings = document.getElementById("settings-button");
@@ -692,14 +692,7 @@ function getSettings () {
 getSettings();
 
 function changeColorTheme (event) {
-    let header = document.getElementsByTagName("header");
-    let h1 = document.getElementsByTagName("h1");
-    let main =document.getElementsByTagName("main");
-    console.log(event.currentTarget.parentNode.parentNode.parentNode.parentNode.children[1]);
-    event.currentTarget.parentNode.parentNode.parentNode.classList.add("is-dark-green-background");
-    event.currentTarget.parentNode.parentNode.nextSibling.nextSibling.classList.add("is-green-background");
-    event.currentTarget.parentNode.parentNode.parentNode.parentNode.children[1].classList.add("is-green-background");
-    event.currentTarget.parentNode.parentNode.parentNode.parentNode.children[2].classList.add("is-dark-green-background");
+    document.body.classList.add("green");
 }
 
 
