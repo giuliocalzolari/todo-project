@@ -314,6 +314,7 @@ function addTodo () {
         todoAttribute.appendChild(createDate(showTodaysDate()));
         //Date.now() gives the time in milliseconds, on which the todo-s can be sorted
         todoAttribute.value = Date.now();
+        
         todoAttribute.appendChild(createPriority("priority"));
         todoAttribute.appendChild(dateInput);
         
@@ -329,7 +330,7 @@ function addTodo () {
             hideFiveIcons(event.currentTarget);
 
             $(dateInput).datepicker({
-                dateFormat: 'd. m. yy',
+                dateFormat: 'dd. mm. yy',
                 inline: true,
                 firstDay: 1,
                 showOtherMonths: true,
@@ -651,8 +652,27 @@ function createInputDate () {
 
 
 function updateDate(dateText, event) {
-    let date = event.input[0].parentElement.children[0];
+    let todoAttribute = event.input[0].parentElement;
+    let date = todoAttribute.children[0];
+    
+    //changing the original date text to the selected date
     date.textContent = dateText;
+
+    //using the milliseconds when sorting by date (line 316)
+    //need to convert the date string (which we get from the dateText - jquery parameter) to milliseconds
+    //our format (line 333) is : date. month. year
+    //if we use the new Date() function on our format, the month and date are switch. e.g. instead of the selected december 6 (6.12), the date will be june 12
+    //so if the day is more than 12 (which will be the month because of the switch), the converting is not even valid
+    //the substring function(start, end) extracts and returns characters from the dateText string (end is not included)
+    //JS counts months from 0 to 11. January is 0. December is 11., therefore we need to substract -1 from the month
+
+    let pickedDay = Number(dateText.substring(0,2));
+    let pickedMonth = Number(dateText.substring(4,6))-1;
+    let pickedYear = Number(dateText.substring(8,12));
+    let pickedDate = new Date(pickedYear, pickedMonth, pickedDay);  //the key is that we need to give proper format in the new Date function
+
+    todoAttribute.value = pickedDate.getTime();
+ 
 }
 
 
