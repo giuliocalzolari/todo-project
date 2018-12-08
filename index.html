@@ -10,6 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="jquery-ui.css">
+        <!-- changes in the css of jquery calendar are included in the main.css, therefore it has to come after the default styles -->
         <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 
         <!-- font fontawesome here -->
@@ -27,8 +28,12 @@
             <nav>
                 <h2>YourToDo</h2>
                 <div class="settings">
-                    <!-- <i class="fas fa-cogs"></i> -->
-                    <button id="settings-button"><i class="fas fa-cogs"></i></button>
+                    <ul id="style-links">
+                        <li><button>silver</button></li>
+                        <li><button>green</button></li>
+                        <li><button>blue</button></li>
+                    </ul>
+                    <button id="settings-button"><i class="fas fa-cogs settings-icon"></i></button>
                 </div>
             </nav>
 
@@ -99,13 +104,9 @@
             <!-- end of todos -->
 
 
-            <!-- calendar -->
-            <sidebar id="calendar-container">
-                <div id="calendar"></div>
-                <!-- <button class="ok-button-calendar">ok</button> -->
-            </sidebar>
-            
-            <!-- end of calendar -->
+            <div class="img-container">
+                <img src="images/to-do.png" alt="list-img">
+            </div>
 
         </main>
         <!-- end of main section -->
