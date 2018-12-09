@@ -219,6 +219,15 @@ function createCheckButton () {
 }
 
 
+function createTrashButtonAfterCheck () {
+    let trashButtonAfterCheck = document.createElement("button");
+    trashButtonAfterCheck.setAttribute("class", "trash");
+    trashButtonAfterCheck.classList.add("is-hidden");
+    trashButtonAfterCheck.addEventListener("click", deleteTodo);
+    return trashButtonAfterCheck;
+}
+
+
 
 function createArrowIcon () {
     let arrowIcon = document.createElement("i");
@@ -259,6 +268,13 @@ function createCheckIcon () {
     return checkIcon;    
 }
 
+function createTrashIconAfterCheck () {
+    let trashIconAfterCheck = document.createElement("i");
+    trashIconAfterCheck.setAttribute("class", "fas fa-trash-alt trash-icon");
+    return trashIconAfterCheck;    
+}
+
+
 
 
 
@@ -291,6 +307,7 @@ function addTodo () {
         let exclamationButton = createExclamationButton();
         let trashButton = createTrashButton();
         let checkButton = createCheckButton();
+        let trashButtonAfterCheck = createTrashButtonAfterCheck();
 
         let dateInput = createInputDate();
 
@@ -343,6 +360,7 @@ function addTodo () {
         iconContainer.appendChild(exclamationButton);
         iconContainer.appendChild(trashButton);
         iconContainer.appendChild(checkButton);
+        iconContainer.appendChild(trashButtonAfterCheck);
 
         arrowButton.appendChild(createArrowIcon());
         pencilButton.appendChild(createPencilIcon());
@@ -350,6 +368,7 @@ function addTodo () {
         exclamationButton.appendChild(createExclamationIcon());
         trashButton.appendChild(createTrashIcon());
         checkButton.appendChild(createCheckIcon());
+        trashButtonAfterCheck.appendChild(createTrashIconAfterCheck());
 
     
         warning.textContent = "";
@@ -371,7 +390,6 @@ function clearInputField () {
 
 //showing additional 5 icons(buttons) when the arrow icon is clicked
 function addFiveIcons (event) {
-    console.log(event.currentTarget);
     let arrowButton = event.currentTarget;
 
     if (arrowButton.parentNode.children[1].classList.contains("is-hidden") === true &&
@@ -525,22 +543,22 @@ function deleteNo (event) {
 
 
 
-//make the todo faint when the ckeck icon is clicked
+//make the todo faint when the check icon is clicked
 function todoDone (event) {
     let checkButton = event.currentTarget;
-    checkButton.parentNode.parentNode.parentNode.classList.add("change-opacity");
-
-    //this line is not working: if priority is given, its opacity doesn't change
-    checkButton.parentNode.previousSibling.children[2].children[1].classList.remove("priority");
 
     checkButton.parentNode.children[0].classList.add("is-hidden");
     checkButton.parentNode.children[1].classList.add("is-hidden");
     checkButton.parentNode.children[2].classList.add("is-hidden");
     checkButton.parentNode.children[3].classList.add("is-hidden");
     checkButton.parentNode.children[4].classList.add("is-hidden");
+    checkButton.parentNode.children[6].classList.remove("is-hidden");
 
-    checkButton.children[0].classList.add("is-green");
+    checkButton.children[0].classList.add("give-opacity");
+    checkButton.parentNode.children[6].classList.add("give-opacity");
+    checkButton.parentNode.previousSibling.children[2].children[1].classList.add("give-opacity");
 
+    checkButton.parentNode.parentNode.parentNode.classList.add("change-opacity");
 }
 
 

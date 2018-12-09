@@ -174,8 +174,7 @@ main {
     color: rgba(0, 0, 0, 0.3);
 }
 
-.is-green {
-    color: lightseagreen;
+.give-opacity {
     opacity: 0.5;
 }
 
@@ -307,7 +306,6 @@ main {
 
 .icon-container {
     display: flex;
-    justify-content: space-between;
     width: 200px;
 }
 
@@ -439,7 +437,7 @@ color: #DDE0AB;
 .green .cancel-button,
 .green .delete-yes,
 .green .delete-no {
-    border: 1px solid #8559a5;
+    border: 1px solid #c4c1e0;
     background: #c4c1e0;
 }
 
@@ -457,7 +455,7 @@ color: #DDE0AB;
 
 .green .change-todo-text-p-style {
     background: white;
-    border: 1px solid #8559a5;
+    border: 1px solid #c4c1e0;
 }
 
 
