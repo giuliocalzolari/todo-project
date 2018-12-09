@@ -45,6 +45,7 @@ header nav h2 {
 #settings-button {
     border: none;
     background: none;
+    cursor: pointer;
 }
 
 
@@ -55,7 +56,6 @@ header nav h2 {
 
 
 #style-links {
-    display: flex;
     list-style-type: none;
 }
 
@@ -64,11 +64,26 @@ header nav h2 {
     text-decoration: none;
     font-size: 16px;
     padding: 5px;
-    width: 100px;
-    transition: all 1s linear
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 20px;
+    border: none;
+    cursor: pointer;
 }
 
 
+#silver {
+    background: #e6e7e5;
+}
+
+#green {
+    background: #5EA3A3;
+}
+
+#blue {
+    background: #60A9CC;
+}
 
 
 h1 {
@@ -462,4 +477,79 @@ color: #DDE0AB;
 .green .trash-icon:hover,
 .green .check-icon:hover {
     color: #DDE0AB;
+}
+
+
+
+
+
+/*blue {
+
+color: #DCF2F8;
+color: #29E0FA;
+color: #60A9CC;
+color: #8ea6b4;
+
+}*/
+
+
+.blue header,
+.blue footer {
+    background: #60A9CC;
+}
+
+.blue h1,
+.blue main {
+    background: #DCF2F8;
+}
+
+.blue #todo-adding {
+    border: 2px solid #29E0FA;
+}
+
+.blue #adding-button,
+.blue #show-priority-button,
+.blue #show-oldest-button,
+.blue .save-button,
+.blue .cancel-button,
+.blue .delete-yes,
+.blue .delete-no {
+    border: 1px solid #29E0FA;
+    background: #29E0FA;
+}
+
+
+.blue #adding-button:hover,
+.blue #show-priority-button:hover,
+.blue #show-oldest-button:hover,
+.blue .save-button:hover,
+.blue .cancel-button:hover,
+.blue .delete-yes:hover,
+.blue .delete-no:hover {
+    background: #8ea6b4;
+}
+
+
+.blue .change-todo-text-p-style {
+    background: white;
+    border: 1px solid #29E0FA;
+}
+
+
+.blue .arrow-icon,
+.blue .pencil-icon,
+.blue .calendar-icon,
+.blue .exclamation-icon,
+.blue .trash-icon,
+.blue .check-icon {
+    color: #29E0FA;
+}
+
+.blue .arrow-icon:hover,
+.blue .pencil-icon:hover,
+.blue .calendar-icon:hover, 
+.blue .exclamation-icon:hover,
+.blue .trash-icon:hover,
+.blue .check-icon:hover {
+    color: #8ea6b4;
 }

@@ -706,15 +706,55 @@ editUsername();
 
 function getSettings () {
     let settings = document.getElementById("settings-button");
-    settings.addEventListener("click", changeColorTheme);
+    settings.addEventListener("click", showHideColorButtons);
 }
 
 getSettings();
 
-function changeColorTheme (event) {
+
+function getColorButtons () {
+    let green = document.getElementById("green");
+    green.addEventListener("click", changeColorThemeToGreen);
+
+    let silver = document.getElementById("silver");
+    silver.addEventListener("click", changeColorThemeToSilver);
+
+    let blue = document.getElementById("blue");
+    blue.addEventListener("click", changeColorThemeToBlue);
+}
+
+getColorButtons();
+
+
+function showHideColorButtons (event) {
+    let settingsButton = event.currentTarget;
+    
+    if (settingsButton.previousSibling.previousSibling.style.display === "none") {
+        settingsButton.previousSibling.previousSibling.style.display = "flex";
+    }
+    else if (settingsButton.previousSibling.previousSibling.style.display === "flex") {
+        settingsButton.previousSibling.previousSibling.style.display = "none";
+    }
+}
+
+function changeColorThemeToGreen (event) {
+    document.body.classList.remove("blue");
     document.body.classList.add("green");
 }
 
+function changeColorThemeToSilver (event) {
+    let body = document.body;
+
+    if (body.classList.contains("green") || body.classList.contains("blue")) {
+        body.classList.remove("green");
+        body.classList.remove("blue");
+    }
+}
+
+function changeColorThemeToBlue (event) {
+    document.body.classList.remove("green");
+    document.body.classList.add("blue");
+}
 
 
 
