@@ -77,12 +77,12 @@ header nav h2 {
     background: #e6e7e5;
 }
 
-#green {
-    background: #5EA3A3;
+#grey {
+    background: #546e7a;
 }
 
 #blue {
-    background: #60A9CC;
+    background: #1a237e;
 }
 
 
@@ -407,102 +407,30 @@ footer p {
 
 /* ------------------------------different color themes---------------------- */
 
-/* green+purple {
+/*blue-pink*/
 
-color: #eaafaf;
-color: #F1FFF1;
-color: #5EA3A3;
-color: #DDE0AB;
-
-} */
-
-.green header,
-.green footer {
-    background: #5EA3A3;
+.blue header {
+    background: #1a237e;
+    color: white;
 }
 
-.green h1,
-.green main {
-    background: #F1FFF1;
-}
-
-.green #todo-adding {
-    border: 2px solid #c4c1e0;
-}
-
-.green #adding-button,
-.green #show-priority-button,
-.green #show-oldest-button,
-.green .save-button,
-.green .cancel-button,
-.green .delete-yes,
-.green .delete-no {
-    border: 1px solid #c4c1e0;
-    background: #c4c1e0;
-}
-
-
-.green #adding-button:hover,
-.green #show-priority-button:hover,
-.green #show-oldest-button:hover,
-.green .save-button:hover,
-.green .cancel-button:hover,
-.green .delete-yes:hover,
-.green .delete-no:hover {
-    background: #DDE0AB;
-}
-
-
-.green .change-todo-text-p-style {
-    background: white;
-    border: 1px solid #c4c1e0;
-}
-
-
-.green .arrow-icon,
-.green .pencil-icon,
-.green .calendar-icon,
-.green .exclamation-icon,
-.green .trash-icon,
-.green .check-icon {
-    color: #c4c1e0;
-}
-
-.green .arrow-icon:hover,
-.green .pencil-icon:hover,
-.green .calendar-icon:hover, 
-.green .exclamation-icon:hover,
-.green .trash-icon:hover,
-.green .check-icon:hover {
-    color: #DDE0AB;
-}
-
-
-
-
-
-/*blue {
-
-color: #DCF2F8;
-color: #29E0FA;
-color: #60A9CC;
-color: #8ea6b4;
-
-}*/
-
-
-.blue header,
 .blue footer {
-    background: #60A9CC;
+    background: #534bae;
+    color: white;
+}
+
+.blue #settings-button {
+    color: white;
 }
 
 .blue h1,
 .blue main {
-    background: #DCF2F8;
+    background: #E1E2E1;
+    color: black;
 }
 
 .blue #todo-adding {
-    border: 2px solid #29E0FA;
+    border: 2px solid #ff4081;
 }
 
 .blue #adding-button,
@@ -512,8 +440,8 @@ color: #8ea6b4;
 .blue .cancel-button,
 .blue .delete-yes,
 .blue .delete-no {
-    border: 1px solid #29E0FA;
-    background: #29E0FA;
+    border: 1px solid #ff4081;
+    background: #ff4081;
 }
 
 
@@ -530,7 +458,7 @@ color: #8ea6b4;
 
 .blue .change-todo-text-p-style {
     background: white;
-    border: 1px solid #29E0FA;
+    border: 1px solid #ff4081;
 }
 
 
@@ -540,7 +468,7 @@ color: #8ea6b4;
 .blue .exclamation-icon,
 .blue .trash-icon,
 .blue .check-icon {
-    color: #29E0FA;
+    color: #ff4081;
 }
 
 .blue .arrow-icon:hover,
@@ -550,4 +478,92 @@ color: #8ea6b4;
 .blue .trash-icon:hover,
 .blue .check-icon:hover {
     color: #8ea6b4;
+}
+
+.blue .website-credit p,
+.blue .website-credit a {
+    color: white;
+}
+
+
+
+
+/*grey*/
+
+.grey header {
+    background: #546e7a;
+    color: white;
+}
+
+
+.grey footer {
+    background: #819ca9;
+    color: white;
+}
+
+.grey #settings-button {
+    color: white;
+}
+
+.grey h1,
+.grey main {
+    background: #E1E2E1;
+    color: black;
+}
+
+.grey #todo-adding {
+    border: 2px solid #80deea;
+}
+
+.grey #adding-button,
+.grey #show-priority-button,
+.grey #show-oldest-button,
+.grey .save-button,
+.grey .cancel-button,
+.grey .delete-yes,
+.grey .delete-no {
+    border: 1px solid #80deea;
+    background: #80deea;
+}
+
+
+.grey #adding-button:hover,
+.grey #show-priority-button:hover,
+.grey #show-oldest-button:hover,
+.grey .save-button:hover,
+.grey .cancel-button:hover,
+.grey .delete-yes:hover,
+.grey .delete-no:hover {
+    background: #4bacb8;
+}
+
+
+.grey .change-todo-text-p-style {
+    background: white;
+    border: 1px solid #80deea;
+}
+
+
+.grey .arrow-icon,
+.grey .pencil-icon,
+.grey .calendar-icon,
+.grey .exclamation-icon,
+.grey .trash-icon,
+.grey .check-icon {
+    color: #80deea;
+}
+
+.grey .arrow-icon:hover,
+.grey .pencil-icon:hover,
+.grey .calendar-icon:hover, 
+.grey .exclamation-icon:hover,
+.grey .trash-icon:hover,
+.grey .check-icon:hover {
+    color: #4bacb8;
+}
+
+
+.grey .website-credit p,
+.grey .website-credit a {
+    color: white;
 }

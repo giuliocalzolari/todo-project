@@ -731,8 +731,8 @@ getSettings();
 
 
 function getColorButtons () {
-    let green = document.getElementById("green");
-    green.addEventListener("click", changeColorThemeToGreen);
+    let grey = document.getElementById("grey");
+    grey.addEventListener("click", changeColorThemeToGrey);
 
     let silver = document.getElementById("silver");
     silver.addEventListener("click", changeColorThemeToSilver);
@@ -755,22 +755,22 @@ function showHideColorButtons (event) {
     }
 }
 
-function changeColorThemeToGreen (event) {
+function changeColorThemeToGrey (event) {
     document.body.classList.remove("blue");
-    document.body.classList.add("green");
+    document.body.classList.add("grey");
 }
 
 function changeColorThemeToSilver (event) {
     let body = document.body;
 
-    if (body.classList.contains("green") || body.classList.contains("blue")) {
-        body.classList.remove("green");
+    if (body.classList.contains("grey") || body.classList.contains("blue")) {
+        body.classList.remove("grey");
         body.classList.remove("blue");
     }
 }
 
 function changeColorThemeToBlue (event) {
-    document.body.classList.remove("green");
+    document.body.classList.remove("grey");
     document.body.classList.add("blue");
 }
 
