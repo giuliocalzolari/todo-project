@@ -1,7 +1,6 @@
 $( document ).ready(function() {
 
 
-
 function getAddButton () {
     let addButton = document.getElementById("adding-button");
     addButton.addEventListener("click", addTodo);
